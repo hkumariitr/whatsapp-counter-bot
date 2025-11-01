@@ -1,3 +1,7 @@
+const express = require('express');
+const eapp = express();
+const port = process.env.PORT || 3000;
+
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const { initializeApp } = require('firebase/app');
@@ -94,3 +98,11 @@ client.on('message_create', async (message) => {
 
 client.initialize();
 // "919334016140@c.us";
+
+eapp.get('/', (req, res) => {
+    res.send('WhatsApp bot is running successfully!');
+});
+
+eapp.listen(port, () => {
+    console.log(`Server is listening on port ${port}`);
+});
